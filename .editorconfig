@@ -1,0 +1,20 @@
+# top-most EditorConfig file https://editorconfig.org/#overview
+root = true
+
+[*]
+charset = utf-8
+
+# Unix-style newlines with a newline ending every file
+end_of_line = lf
+insert_final_newline = true
+
+# 4 space indentation
+indent_style = space
+indent_size = 4
+
+# remove any whitespace characters preceding newline
+trim_trailing_whitespace = true
+
+[Makefile]
+# 1 tab indentation
+indent_style = tab

@@ -1,0 +1,21 @@
+{
+    "hostname": "vbyndych-pc",
+    "ssh_fullname": "vbyndych",
+    "ssh_password": "123",
+    "ssh_username": "vbyndych",
+
+    "headless": "false",
+    "cpus": "2",
+    "disk_size": "60000",
+    "memory": "4096",
+
+    "iso_checksum_type": "sha256",
+    "iso_checksum": "7b53b29a34cfef4ddfe24dac27ee321c289dc2ed8b0c1361666bbee0f6ffa9f4",
+    "iso_url": "var/linuxmint-19.1-xfce-64bit.iso",
+    "preseed": "mint-19.seed",
+
+    "vm_name": "mint-xfce-19.1",
+    "version": "1.0.2",
+    "version_description": "Linux Mint 19.1",
+    "format": "ova"
+  }

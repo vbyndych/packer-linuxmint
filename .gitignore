@@ -1,0 +1,9 @@
+.vagrant/
+*.swp
+Makefile.local
+.DS_Store
+.bundle
+
+
+var/*
+!var/.gitkeep

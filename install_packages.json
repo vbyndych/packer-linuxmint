@@ -1,0 +1,55 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-ovf",
+      "source_path": "var/{{user `previous_step`}}/{{user `vm_name`}}.ova",
+      "vm_name": "{{user `vm_name`}}",
+      "output_directory": "var/install_packages",
+      "format": "ova",
+      "export_opts":
+      [
+        "--vsys", "0",
+        "--manifest",
+        "--description", "{{user `version_description`}}",
+        "--version", "{{user `version`}}"
+      ],
+      "headless": "{{user `headless`}}",
+      "boot_wait": "5s",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "shutdown_command": "sudo poweroff"
+    }
+  ],
+  "provisioners": [
+    {
+      "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "scripts": [
+        "script/rc_local.sh",
+        "script/apt.sh",
+        "script/sshd.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "expect_disconnect": true,
+      "scripts": [
+        "script/update.sh",
+        "script/reboot.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "pause_before": "60s",
+      "scripts": [
+        "script/sudo.sh",
+        "script/cleanup.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "_comment": "From variable file"
+  }
+}
